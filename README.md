@@ -2,7 +2,7 @@
 
 Coleccion ligera de animaciones CSS reutilizables para paginas y aplicaciones web. Incluye fondos, entradas, efectos para botones, loaders y placeholders. Sin dependencias ni JavaScript.
 
-La documentacion y los ejemplos usan **Arial** y texto de tamano comodo. Las clases no cambian la tipografia global de tu sitio.
+La pagina de ejemplo usa **Arial**, texto legible y un diseno sencillo. Las clases de la libreria no cambian la tipografia global de tu sitio. Abre [`index.html`](index.html) para ver la muestra.
 
 ## Instalacion
 
@@ -58,7 +58,7 @@ import "animaciones-web-soyromahhh";
 | `anim-loader-bars` | Indicador de barras (requiere cuatro `span`) |
 | `anim-skeleton` | Placeholder de carga |
 | `anim-hover-lift` | Elevacion al pasar el puntero o enfocar |
-| `anim-marquee` | Desplazamiento horizontal (requiere contenido ancho) |
+| `anim-marquee` | Desplazamiento horizontal (requiere contenido duplicado) |
 
 ## Opciones
 

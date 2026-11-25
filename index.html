@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Muestra de animaciones CSS sencillas para interfaces web.">
+    <title>Animaciones Web - Muestra</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #20283a;
+        background: #f5f6f8;
+        font-size: 16px;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; line-height: 1.6; }
+      .page { width: min(100% - 2rem, 1080px); margin: 0 auto; padding: 3rem 0 4rem; }
+      .intro { padding: 2rem; border-radius: 1rem; color: white; }
+      .intro h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+      .intro p { max-width: 42rem; margin: 0; font-size: 1.125rem; }
+      section { margin-top: 2.5rem; }
+      h2 { margin: 0 0 1rem; font-size: 1.5rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+      .card { min-height: 150px; padding: 1.25rem; border: 1px solid #e1e4eb; border-radius: 0.75rem; background: white; }
+      .card h3 { margin: 0 0 1rem; font-size: 1.125rem; }
+      .preview { display: flex; min-height: 65px; align-items: center; justify-content: center; }
+      .preview .anim-bg-gradient { width: 100%; min-height: 65px; border-radius: 0.5rem; }
+      .loader-row { display: flex; align-items: center; justify-content: center; gap: 2rem; }
+      .color-demo { --anim-color: #3157c8; }
+      .skeleton-demo { width: 100%; }
+      .skeleton-demo .anim-skeleton { margin: 0.5rem 0; }
+      .skeleton-demo .short { width: 65%; }
+      .marquee-window { overflow: hidden; width: 100%; padding: 0.75rem 0; }
+      .anim-marquee { display: flex; gap: 2rem; }
+      .marquee-item { white-space: nowrap; }
+      a { color: #2449ad; }
+      @media (max-width: 600px) {
+        .page { padding-top: 1.25rem; }
+        .intro { padding: 1.5rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="intro anim-bg-gradient">
+        <h1 class="anim-fade-in">Animaciones Web</h1>
+        <p class="anim-slide-up">Animaciones CSS utiles para fondos, loaders y detalles de interfaz. Ligeras, reutilizables y sin dependencias.</p>
+      </header>
+
+      <section aria-labelledby="fondos">
+        <h2 id="fondos">Fondos</h2>
+        <div class="grid">
+          <article class="card anim-hover-lift">
+            <h3>Degradado en movimiento</h3>
+            <div class="preview"><div class="anim-bg-gradient" aria-hidden="true"></div></div>
+          </article>
+          <article class="card anim-hover-lift anim-bg-orbit">
+            <h3>Formas suaves</h3>
+            <p>Un fondo tranquilo para secciones y tarjetas.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="entradas">
+        <h2 id="entradas">Entradas y detalles</h2>
+        <div class="grid">
+          <article class="card anim-hover-lift"><h3>Aparecer</h3><div class="preview anim-fade-in">Contenido gradual</div></article>
+          <article class="card anim-hover-lift"><h3>Subir</h3><div class="preview anim-slide-up">Entrada desde abajo</div></article>
+          <article class="card anim-hover-lift"><h3>Deslizar</h3><div class="preview anim-slide-in-left">Entrada lateral</div></article>
+          <article class="card anim-hover-lift"><h3>Pulso y rebote</h3><div class="preview"><span class="anim-bounce">●</span><span class="anim-pulse" style="margin-left: 1.5rem">Pulso suave</span></div></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="carga">
+        <h2 id="carga">Indicadores de carga</h2>
+        <div class="grid color-demo">
+          <article class="card"><h3>Circular</h3><div class="preview"><div class="anim-loader-spinner" role="status" aria-label="Cargando"></div></div></article>
+          <article class="card"><h3>Puntos</h3><div class="preview"><div class="anim-loader-dots" role="status" aria-label="Cargando"><span></span><span></span><span></span></div></div></article>
+          <article class="card"><h3>Barras</h3><div class="preview"><div class="anim-loader-bars" role="status" aria-label="Cargando"><span></span><span></span><span></span><span></span></div></div></article>
+          <article class="card"><h3>Placeholder</h3><div class="preview skeleton-demo" aria-hidden="true"><div><div class="anim-skeleton"></div><div class="anim-skeleton short"></div></div></div></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="marquesina">
+        <h2 id="marquesina">Desplazamiento horizontal</h2>
+        <div class="card marquee-window">
+          <div class="anim-marquee" aria-label="Contenido de ejemplo">
+            <span class="marquee-item">Animaciones sencillas</span><span class="marquee-item">•</span><span class="marquee-item">Sin dependencias</span><span class="marquee-item">•</span><span class="marquee-item">Animaciones sencillas</span><span class="marquee-item">•</span><span class="marquee-item">Sin dependencias</span><span class="marquee-item">•</span>
+          </div>
+        </div>
+      </section>
+
+      <footer><p>Tipografia Arial · Respeta la preferencia de movimiento reducido del sistema.</p><p><a href="https://github.com/SoyRomahhh/npm-animations">Ver el codigo en GitHub</a></p></footer>
+    </main>
+  </body>
+</html>
