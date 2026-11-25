@@ -4,7 +4,7 @@ Libreria de animaciones CSS reutilizables para fondos, loaders y detalles de int
 
 ## Probar la demo
 
-Abre `index.html` directamente en el navegador; sus estilos y controles estan incluidos en el propio archivo, asi que no hace falta servidor ni npm. La demo permite buscar animaciones, repetirlas, pausarlas, ajustar colores, velocidad y bordes, y copiar ejemplos HTML completos.
+Abre `index.html` directamente en el navegador; sus estilos y controles estan incluidos en el propio archivo, asi que no hace falta servidor ni npm. La galeria incluye 100 presets en cinco categorias, con busqueda, filtros, paginacion, reproduccion individual o por pagina y fragmentos HTML listos para copiar.
 
 `index.css` es la hoja de estilos fuente que se publica en npm. Si la editas, actualiza el CSS incluido en la demo con:
 
@@ -55,6 +55,7 @@ Configura una paleta y duracion global, o define estas variables en un contenedo
   --anim-color: #5b5de6;
   --anim-accent: #ff8866;
   --anim-surface: #e8eaf3;
+  --anim-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
   --anim-duration: 1.2s;
   --anim-bg-duration: 12s;
   --anim-orbit-duration: 14.4s;
@@ -68,15 +69,18 @@ Configura una paleta y duracion global, o define estas variables en un contenedo
 | `--anim-color` | Color principal | `#5b5de6` |
 | `--anim-accent` | Color de acento | `#ff8866` |
 | `--anim-surface` | Superficie del loader circular | `#e8eaf3` |
+| `--anim-ease` | Curva de movimiento | `cubic-bezier(0.2, 0.75, 0.25, 1)` |
 | `--anim-duration` | Ritmo de loaders y movimientos | `1.2s` |
 | `--anim-bg-duration` | Ritmo de fondos | `12s` |
 | `--anim-orbit-duration` | Ritmo orbital y formas | `14.4s` |
 | `--anim-marquee-duration` | Ritmo del texto en movimiento | `18s` |
 | `--anim-radius` | Esquinas de fondos y `.anim-rounded` | `18px` |
 
+Los 100 presets reutilizables usan `anim-catalog` con variables `--anim-catalog-*`; copia un ejemplo desde la galeria para llevarte la configuracion exacta.
+
 ## Catalogo
 
-Fondos y formas: `anim-bg-gradient`, `anim-bg-grid`, `anim-bg-orbit`, `anim-morph`, `anim-gradient-text`, `anim-rounded`.
+Fondos y formas: `anim-bg-gradient`, `anim-bg-grid`, `anim-bg-orbit`, `anim-morph`, `anim-gradient-text`, `anim-rounded`, `anim-catalog`, `anim-catalog-shape`, `anim-catalog-swatch`.
 
 Entradas y movimiento: `anim-fade-in`, `anim-slide-up`, `anim-slide-in-left`, `anim-reveal`, `anim-flip-in`, `anim-bounce`, `anim-float`, `anim-pulse`, `anim-wiggle`, `anim-jelly`, `anim-heartbeat`, `anim-glow`, `anim-spin`, `anim-stagger`.
 
