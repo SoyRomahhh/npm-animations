@@ -1,8 +1,18 @@
 # Animaciones Web
 
-Coleccion de animaciones CSS reutilizables para fondos, loaders y detalles de interfaz. No requiere dependencias ni JavaScript para usar la libreria.
+Libreria de animaciones CSS reutilizables para fondos, loaders y detalles de interfaz. No requiere dependencias ni JavaScript para usar las clases.
 
-La demo interactiva esta en [`index.html`](index.html): cambia los colores, el ritmo y las esquinas; prueba los efectos y copia sus clases. Usa Arial y respeta la preferencia del sistema para reducir el movimiento.
+## Probar la demo
+
+Abre `index.html` directamente en el navegador; sus estilos y controles estan incluidos en el propio archivo, asi que no hace falta servidor ni npm. La demo permite buscar animaciones, repetirlas, pausarlas, ajustar colores, velocidad y bordes, y copiar ejemplos HTML completos.
+
+`index.css` es la hoja de estilos fuente que se publica en npm. Si la editas, actualiza el CSS incluido en la demo con:
+
+```bash
+node scripts/inline-demo-css.mjs
+```
+
+La demo y la libreria usan Arial, ofrecen movimiento reducido para quien lo prefiera y tienen diseno original. Se tomaron como referencia los patrones de duracion personalizable de [Animate.css](https://animate.style/) y los ejemplos interactivos de [MDN CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations); no se copiaron sus disenos ni codigo.
 
 ## Instalacion
 
@@ -12,13 +22,13 @@ Cuando se publique en npm:
 npm install animaciones-web-soyromahhh
 ```
 
-Importa la hoja de estilos:
+Importa los estilos:
 
 ```css
 @import "animaciones-web-soyromahhh";
 ```
 
-O en un proyecto con soporte para importar CSS:
+O desde JavaScript en un proyecto con soporte para importar CSS:
 
 ```js
 import "animaciones-web-soyromahhh";
@@ -27,16 +37,18 @@ import "animaciones-web-soyromahhh";
 ## Uso rapido
 
 ```html
-<div class="anim-bg-gradient anim-rounded">
-  <h1 class="anim-fade-in">Hola, web</h1>
-</div>
+<section class="anim-bg-orbit anim-rounded">
+  <h1 class="anim-slide-up">Hola, web</h1>
+</section>
 
-<div class="anim-loader-orbit" role="status" aria-label="Cargando"></div>
+<div class="anim-loader-dots" role="status" aria-label="Cargando">
+  <span></span><span></span><span></span>
+</div>
 ```
 
 ## Personalizacion
 
-Define las variables una vez en `:root` o en un contenedor para personalizar solo esa parte:
+Configura una paleta y duracion global, o define estas variables en un contenedor para personalizar solo esa parte:
 
 ```css
 :root {
@@ -46,58 +58,38 @@ Define las variables una vez en `:root` o en un contenedor para personalizar sol
   --anim-duration: 1.2s;
   --anim-bg-duration: 12s;
   --anim-orbit-duration: 14.4s;
+  --anim-marquee-duration: 18s;
   --anim-radius: 18px;
 }
 ```
 
-Variables disponibles:
-
 | Variable | Controla | Valor inicial |
 | --- | --- | --- |
 | `--anim-color` | Color principal | `#5b5de6` |
-| `--anim-accent` | Color secundario | `#ff8866` |
-| `--anim-surface` | Borde del loader circular | `#e8eaf3` |
+| `--anim-accent` | Color de acento | `#ff8866` |
+| `--anim-surface` | Superficie del loader circular | `#e8eaf3` |
 | `--anim-duration` | Ritmo de loaders y movimientos | `1.2s` |
-| `--anim-bg-duration` | Ritmo del fondo degradado | `12s` |
-| `--anim-orbit-duration` | Ritmo de fondos orbitales y formas | `14.4s` |
-| `--anim-radius` | Esquinas de fondos y de `.anim-rounded` | `18px` |
+| `--anim-bg-duration` | Ritmo de fondos | `12s` |
+| `--anim-orbit-duration` | Ritmo orbital y formas | `14.4s` |
+| `--anim-marquee-duration` | Ritmo del texto en movimiento | `18s` |
+| `--anim-radius` | Esquinas de fondos y `.anim-rounded` | `18px` |
 
-## Clases disponibles
+## Catalogo
 
-| Clase | Efecto |
-| --- | --- |
-| `anim-bg-gradient` | Fondo degradado animado |
-| `anim-bg-orbit` | Fondo con formas en movimiento |
-| `anim-rounded` | Esquinas personalizables |
-| `anim-fade-in` | Aparicion gradual |
-| `anim-slide-up` | Entrada desde abajo |
-| `anim-slide-in-left` | Entrada desde la izquierda |
-| `anim-reveal` | Entrada con escala y desenfoque |
-| `anim-bounce` | Rebote |
-| `anim-float` | Flotacion suave |
-| `anim-pulse` | Pulso de opacidad y escala |
-| `anim-wiggle` | Balanceo |
-| `anim-glow` | Brillo pulsante |
-| `anim-morph` | Forma organica cambiante |
-| `anim-spin` | Giro continuo |
-| `anim-loader-spinner` | Loader circular |
-| `anim-loader-orbit` | Loader orbital |
-| `anim-loader-dots` | Tres puntos (requiere tres `span`) |
-| `anim-loader-bars` | Barras (requiere cuatro `span`) |
-| `anim-skeleton` | Placeholder de carga |
-| `anim-hover-lift` | Elevacion al pasar el puntero o enfocar |
-| `anim-button` | Destello para botones |
-| `anim-stagger` | Entrada escalonada de hijos |
-| `anim-marquee` | Desplazamiento horizontal (duplica el contenido) |
+Fondos y formas: `anim-bg-gradient`, `anim-bg-grid`, `anim-bg-orbit`, `anim-morph`, `anim-gradient-text`, `anim-rounded`.
 
-Los loaders deben tener un nombre accesible, por ejemplo `role="status"` y `aria-label="Cargando"`. Todas las animaciones respetan `prefers-reduced-motion`.
+Entradas y movimiento: `anim-fade-in`, `anim-slide-up`, `anim-slide-in-left`, `anim-reveal`, `anim-flip-in`, `anim-bounce`, `anim-float`, `anim-pulse`, `anim-wiggle`, `anim-jelly`, `anim-heartbeat`, `anim-glow`, `anim-spin`, `anim-stagger`.
+
+Interfaz y carga: `anim-loader-spinner`, `anim-loader-orbit`, `anim-loader-dots`, `anim-loader-bars`, `anim-loader-progress`, `anim-skeleton`, `anim-hover-lift`, `anim-button`, `anim-marquee`.
+
+Los loaders necesitan un nombre accesible, por ejemplo `role="status"` y `aria-label="Cargando"`. La hoja de estilos respeta la preferencia del sistema `prefers-reduced-motion`.
 
 ## Publicar en npm
 
-1. Comprueba que el nombre `animaciones-web-soyromahhh` este disponible en npm.
-2. Ejecuta `npm login` y `npm publish` desde la carpeta del proyecto.
+1. Comprueba que el nombre `animaciones-web-soyromahhh` este disponible.
+2. Ejecuta `npm login` y `npm publish` en la carpeta del proyecto.
 
-Si el nombre ya esta ocupado, cambia el campo `name` de `package.json` antes de publicar.
+Si el nombre ya esta ocupado, cambia el campo `name` de `package.json`.
 
 ## Licencia
 

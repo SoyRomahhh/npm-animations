@@ -5,6 +5,7 @@
   --anim-duration: 1.2s;
   --anim-bg-duration: 12s;
   --anim-orbit-duration: 14.4s;
+  --anim-marquee-duration: 18s;
   --anim-radius: 18px;
   --anim-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
 }
@@ -14,6 +15,16 @@
   background-size: 300% 300%;
   border-radius: var(--anim-radius);
   animation: anim-gradient var(--anim-bg-duration) ease infinite;
+}
+
+.anim-bg-grid {
+  border-radius: var(--anim-radius);
+  background-color: #fafaff;
+  background-image:
+    linear-gradient(var(--anim-surface) 1px, transparent 1px),
+    linear-gradient(90deg, var(--anim-surface) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation: anim-grid var(--anim-bg-duration) linear infinite;
 }
 
 .anim-bg-orbit {
@@ -64,6 +75,27 @@
 
 .anim-reveal {
   animation: anim-reveal var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-flip-in {
+  animation: anim-flip-in var(--anim-duration) var(--anim-ease) both;
+  backface-visibility: hidden;
+}
+
+.anim-jelly {
+  animation: anim-jelly var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-heartbeat {
+  animation: anim-heartbeat var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-gradient-text {
+  background: linear-gradient(100deg, var(--anim-color), var(--anim-accent), var(--anim-color));
+  background-size: 220% auto;
+  background-clip: text;
+  color: transparent;
+  animation: anim-gradient var(--anim-bg-duration) linear infinite;
 }
 
 .anim-bounce {
@@ -190,6 +222,24 @@
   animation-delay: 0.36s;
 }
 
+.anim-loader-progress {
+  width: 100%;
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--anim-surface);
+}
+
+.anim-loader-progress::before {
+  display: block;
+  width: 36%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--anim-color), var(--anim-accent));
+  content: "";
+  animation: anim-progress var(--anim-duration) ease-in-out infinite;
+}
+
 .anim-skeleton {
   min-height: 1rem;
   overflow: hidden;
@@ -240,7 +290,7 @@
 .anim-marquee {
   display: block;
   width: max-content;
-  animation: anim-marquee 18s linear infinite;
+  animation: anim-marquee var(--anim-marquee-duration) linear infinite;
 }
 
 .anim-marquee:hover {
@@ -266,6 +316,10 @@
 @keyframes anim-gradient {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+@keyframes anim-grid {
+  to { background-position: 28px 28px, 28px 28px; }
 }
 
 @keyframes anim-orbit-a {
@@ -294,6 +348,23 @@
 @keyframes anim-reveal {
   from { opacity: 0; filter: blur(8px); transform: scale(0.96) translateY(0.5rem); }
   to { opacity: 1; filter: blur(0); transform: scale(1) translateY(0); }
+}
+
+@keyframes anim-flip-in {
+  from { opacity: 0; transform: perspective(700px) rotateX(-70deg) translateY(0.75rem); }
+  to { opacity: 1; transform: perspective(700px) rotateX(0) translateY(0); }
+}
+
+@keyframes anim-jelly {
+  0%, 100% { transform: scale(1, 1); }
+  25% { transform: scale(0.94, 1.06); }
+  50% { transform: scale(1.05, 0.95); }
+  75% { transform: scale(0.98, 1.02); }
+}
+
+@keyframes anim-heartbeat {
+  0%, 35%, 100% { transform: scale(1); }
+  12%, 22% { transform: scale(1.12); }
 }
 
 @keyframes anim-bounce {
@@ -341,6 +412,11 @@
   50% { height: 100%; }
 }
 
+@keyframes anim-progress {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(320%); }
+}
+
 @keyframes anim-shimmer {
   to { background-position: -200% 0; }
 }
@@ -351,12 +427,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .anim-bg-gradient,
+  .anim-bg-grid,
   .anim-bg-orbit::before,
   .anim-bg-orbit::after,
   .anim-fade-in,
   .anim-slide-up,
   .anim-slide-in-left,
   .anim-reveal,
+  .anim-flip-in,
+  .anim-jelly,
+  .anim-heartbeat,
+  .anim-gradient-text,
   .anim-bounce,
   .anim-float,
   .anim-pulse,
@@ -368,6 +449,7 @@
   .anim-loader-orbit,
   .anim-loader-dots span,
   .anim-loader-bars span,
+  .anim-loader-progress::before,
   .anim-skeleton,
   .anim-marquee,
   .anim-stagger > * {

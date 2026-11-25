@@ -5,7 +5,479 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personaliza y prueba animaciones CSS reutilizables para tu web.">
     <title>Animaciones Web | Muestrario</title>
-    <link rel="stylesheet" href="index.css">
+    <style id="animation-library">
+:root {
+  --anim-color: #5b5de6;
+  --anim-accent: #ff8866;
+  --anim-surface: #e8eaf3;
+  --anim-duration: 1.2s;
+  --anim-bg-duration: 12s;
+  --anim-orbit-duration: 14.4s;
+  --anim-marquee-duration: 18s;
+  --anim-radius: 18px;
+  --anim-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.anim-bg-gradient {
+  background: linear-gradient(125deg, var(--anim-color), var(--anim-accent), #477eae, var(--anim-color));
+  background-size: 300% 300%;
+  border-radius: var(--anim-radius);
+  animation: anim-gradient var(--anim-bg-duration) ease infinite;
+}
+
+.anim-bg-grid {
+  border-radius: var(--anim-radius);
+  background-color: #fafaff;
+  background-image:
+    linear-gradient(var(--anim-surface) 1px, transparent 1px),
+    linear-gradient(90deg, var(--anim-surface) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation: anim-grid var(--anim-bg-duration) linear infinite;
+}
+
+.anim-bg-orbit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--anim-radius);
+  background: #f3f4fb;
+}
+
+.anim-bg-orbit::before,
+.anim-bg-orbit::after {
+  position: absolute;
+  z-index: -1;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.38;
+  filter: blur(2px);
+}
+
+.anim-bg-orbit::before {
+  top: -7rem;
+  left: -5rem;
+  background: var(--anim-color);
+  animation: anim-orbit-a var(--anim-orbit-duration) ease-in-out infinite alternate;
+}
+
+.anim-bg-orbit::after {
+  right: -6rem;
+  bottom: -8rem;
+  background: var(--anim-accent);
+  animation: anim-orbit-b var(--anim-orbit-duration) ease-in-out infinite alternate;
+}
+
+.anim-fade-in {
+  animation: anim-fade-in var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-slide-up {
+  animation: anim-slide-up var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-slide-in-left {
+  animation: anim-slide-in-left var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-reveal {
+  animation: anim-reveal var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-flip-in {
+  animation: anim-flip-in var(--anim-duration) var(--anim-ease) both;
+  backface-visibility: hidden;
+}
+
+.anim-jelly {
+  animation: anim-jelly var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-heartbeat {
+  animation: anim-heartbeat var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-gradient-text {
+  background: linear-gradient(100deg, var(--anim-color), var(--anim-accent), var(--anim-color));
+  background-size: 220% auto;
+  background-clip: text;
+  color: transparent;
+  animation: anim-gradient var(--anim-bg-duration) linear infinite;
+}
+
+.anim-bounce {
+  animation: anim-bounce var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-float {
+  animation: anim-float var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-pulse {
+  animation: anim-pulse var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-wiggle {
+  animation: anim-wiggle var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-glow {
+  animation: anim-glow var(--anim-duration) ease-in-out infinite alternate;
+}
+
+.anim-spin {
+  animation: anim-spin var(--anim-duration) linear infinite;
+}
+
+.anim-morph {
+  background: linear-gradient(135deg, var(--anim-color), var(--anim-accent));
+  animation: anim-morph var(--anim-orbit-duration) ease-in-out infinite alternate;
+}
+
+.anim-rounded {
+  border-radius: var(--anim-radius);
+}
+
+.anim-loader-spinner {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px solid var(--anim-surface, #e8eaf3);
+  border-top-color: var(--anim-color);
+  border-right-color: var(--anim-accent);
+  border-radius: 50%;
+  animation: anim-spin var(--anim-duration) linear infinite;
+}
+
+.anim-loader-orbit {
+  position: relative;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 1px solid #dfe1f0;
+  border-radius: 50%;
+  animation: anim-spin var(--anim-duration) linear infinite;
+}
+
+.anim-loader-orbit::before,
+.anim-loader-orbit::after {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+}
+
+.anim-loader-orbit::before {
+  top: -0.3rem;
+  left: calc(50% - 0.3rem);
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--anim-color);
+}
+
+.anim-loader-orbit::after {
+  top: 0.65rem;
+  left: 0.65rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px dashed var(--anim-accent);
+}
+
+.anim-loader-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.anim-loader-dots span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--anim-color);
+  animation: anim-dot var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-loader-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.anim-loader-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.anim-loader-bars {
+  display: inline-flex;
+  height: 2.5rem;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.anim-loader-bars span {
+  width: 0.35rem;
+  height: 35%;
+  border-radius: 999px;
+  background: var(--anim-color);
+  animation: anim-bar var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-loader-bars span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.anim-loader-bars span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.anim-loader-bars span:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.anim-loader-progress {
+  width: 100%;
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--anim-surface);
+}
+
+.anim-loader-progress::before {
+  display: block;
+  width: 36%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--anim-color), var(--anim-accent));
+  content: "";
+  animation: anim-progress var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-skeleton {
+  min-height: 1rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  background: linear-gradient(90deg, #e8eaf1 25%, #f8f8fb 50%, #e8eaf1 75%);
+  background-size: 200% 100%;
+  animation: anim-shimmer var(--anim-duration) ease-in-out infinite;
+}
+
+.anim-hover-lift {
+  transition: transform 220ms var(--anim-ease), box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.anim-hover-lift:hover,
+.anim-hover-lift:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgb(34 38 82 / 12%);
+}
+
+.anim-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.anim-button::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 20%, rgb(255 255 255 / 28%) 48%, transparent 76%);
+  content: "";
+  transform: translateX(-120%);
+  transition: transform 550ms ease;
+}
+
+.anim-button:hover::after,
+.anim-button:focus-visible::after {
+  transform: translateX(120%);
+}
+
+.anim-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(91 93 230 / 25%);
+}
+
+.anim-marquee {
+  display: block;
+  width: max-content;
+  animation: anim-marquee var(--anim-marquee-duration) linear infinite;
+}
+
+.anim-marquee:hover {
+  animation-play-state: paused;
+}
+
+.anim-stagger > * {
+  animation: anim-slide-up var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-stagger > :nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.anim-stagger > :nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.anim-stagger > :nth-child(4) {
+  animation-delay: 300ms;
+}
+
+@keyframes anim-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes anim-grid {
+  to { background-position: 28px 28px, 28px 28px; }
+}
+
+@keyframes anim-orbit-a {
+  to { transform: translate(4rem, 3rem) scale(1.15); }
+}
+
+@keyframes anim-orbit-b {
+  to { transform: translate(-3rem, -2rem) scale(0.9); }
+}
+
+@keyframes anim-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes anim-slide-up {
+  from { opacity: 0; transform: translateY(1.1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes anim-slide-in-left {
+  from { opacity: 0; transform: translateX(-1.25rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes anim-reveal {
+  from { opacity: 0; filter: blur(8px); transform: scale(0.96) translateY(0.5rem); }
+  to { opacity: 1; filter: blur(0); transform: scale(1) translateY(0); }
+}
+
+@keyframes anim-flip-in {
+  from { opacity: 0; transform: perspective(700px) rotateX(-70deg) translateY(0.75rem); }
+  to { opacity: 1; transform: perspective(700px) rotateX(0) translateY(0); }
+}
+
+@keyframes anim-jelly {
+  0%, 100% { transform: scale(1, 1); }
+  25% { transform: scale(0.94, 1.06); }
+  50% { transform: scale(1.05, 0.95); }
+  75% { transform: scale(0.98, 1.02); }
+}
+
+@keyframes anim-heartbeat {
+  0%, 35%, 100% { transform: scale(1); }
+  12%, 22% { transform: scale(1.12); }
+}
+
+@keyframes anim-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.55rem); }
+}
+
+@keyframes anim-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-0.75rem) rotate(2deg); }
+}
+
+@keyframes anim-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.96); }
+}
+
+@keyframes anim-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-7deg); }
+  75% { transform: rotate(7deg); }
+}
+
+@keyframes anim-glow {
+  from { filter: drop-shadow(0 0 2px var(--anim-color)); }
+  to { filter: drop-shadow(0 0 16px var(--anim-accent)); }
+}
+
+@keyframes anim-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes anim-morph {
+  from { border-radius: 42% 58% 64% 36% / 43% 42% 58% 57%; transform: rotate(0); }
+  to { border-radius: 63% 37% 40% 60% / 56% 63% 37% 44%; transform: rotate(18deg); }
+}
+
+@keyframes anim-dot {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-0.45rem); }
+}
+
+@keyframes anim-bar {
+  0%, 100% { height: 35%; }
+  50% { height: 100%; }
+}
+
+@keyframes anim-progress {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(320%); }
+}
+
+@keyframes anim-shimmer {
+  to { background-position: -200% 0; }
+}
+
+@keyframes anim-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-bg-gradient,
+  .anim-bg-grid,
+  .anim-bg-orbit::before,
+  .anim-bg-orbit::after,
+  .anim-fade-in,
+  .anim-slide-up,
+  .anim-slide-in-left,
+  .anim-reveal,
+  .anim-flip-in,
+  .anim-jelly,
+  .anim-heartbeat,
+  .anim-gradient-text,
+  .anim-bounce,
+  .anim-float,
+  .anim-pulse,
+  .anim-wiggle,
+  .anim-glow,
+  .anim-spin,
+  .anim-morph,
+  .anim-loader-spinner,
+  .anim-loader-orbit,
+  .anim-loader-dots span,
+  .anim-loader-bars span,
+  .anim-loader-progress::before,
+  .anim-skeleton,
+  .anim-marquee,
+  .anim-stagger > * {
+    animation: none !important;
+  }
+
+  .anim-hover-lift,
+  .anim-button,
+  .anim-button::after {
+    transition: none !important;
+  }
+
+  .anim-hover-lift:hover,
+  .anim-hover-lift:focus-visible,
+  .anim-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+</style>
     <style>
       :root {
         color-scheme: light;
@@ -18,6 +490,7 @@
         --anim-duration: 1.2s;
         --anim-bg-duration: 12s;
         --anim-orbit-duration: 14.4s;
+        --anim-marquee-duration: 18s;
         --anim-radius: 18px;
         --anim-surface: #e8eaf3;
       }
@@ -57,6 +530,11 @@
       .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
       .section-heading h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.25rem); letter-spacing: -0.04em; line-height: 1.2; }
       .section-heading p { max-width: 540px; margin: 8px 0 0; color: #686a7c; font-size: 1.05rem; }
+      .gallery-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 18px; }
+      .gallery-search { flex: 1 1 240px; min-height: 46px; padding: 0 14px; border: 1px solid #e1e2eb; border-radius: 12px; background: white; color: #24263a; }
+      .gallery-action { min-height: 46px; padding: 0 15px; border: 1px solid #e1e2eb; border-radius: 12px; background: white; color: #37394f; font-weight: 700; }
+      .gallery-action-primary { border-color: var(--anim-color); background: var(--anim-color); color: white; }
+      .gallery-action:hover { box-shadow: 0 5px 16px rgb(35 38 80 / 12%); }
       .customizer { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; align-items: stretch; }
       .control-panel, .palette-panel, .demo-card { border: 1px solid #e8e9f0; border-radius: var(--anim-radius); background: white; box-shadow: 0 6px 24px rgb(32 37 74 / 4%); }
       .control-panel { padding: 24px; }
@@ -96,6 +574,11 @@
       .motion-row { display: flex; align-items: center; gap: 22px; }
       .motion-token { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 13px; background: linear-gradient(145deg, var(--anim-color), var(--anim-accent)); color: white; }
       .lift-demo { display: grid; min-height: 64px; place-items: center; padding: 0 18px; border: 1px solid #e8e9f0; border-radius: 14px; background: white; color: #55576d; font-weight: 700; }
+      .lift-demo.is-preview-active { transform: translateY(-5px); box-shadow: 0 16px 34px rgb(34 38 82 / 12%); }
+      .flip-tile { display: grid; width: 108px; height: 76px; place-items: center; border: 1px solid #eee9ff; border-radius: 16px; background: white; box-shadow: 0 10px 24px rgb(40 43 90 / 8%); color: #4a4b67; font-weight: 700; }
+      .gradient-word { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.04em; }
+      .progress-wrap { width: min(250px, 100%); }
+      .gallery-empty { padding: 28px; border: 1px dashed #d8d9e5; border-radius: 16px; color: #6b6d7f; text-align: center; }
       .skeleton-content { width: min(240px, 100%); }
       .skeleton-content .anim-skeleton { height: 14px; margin: 10px 0; }
       .skeleton-content .skeleton-title { width: 74%; height: 18px; }
@@ -127,6 +610,10 @@
         .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+      body.animations-paused *,
+      body.animations-paused *::before,
+      body.animations-paused *::after { animation-play-state: paused !important; }
       @media (max-width: 560px) {
         .shell { width: min(100% - 28px, 1120px); }
         .topbar { min-height: 66px; }
@@ -228,14 +715,25 @@
           <div class="section-heading">
             <div>
               <h2 id="gallery-title">Muestrario de animaciones</h2>
-              <p>Previsualiza cada efecto y copia un ejemplo listo para pegar. Pasa el puntero por las tarjetas.</p>
+              <p>Busca, reproduce y personaliza los efectos. Copia ejemplos listos para pegar en tu proyecto.</p>
             </div>
           </div>
+          <div class="gallery-tools">
+            <label class="sr-only" for="gallery-search">Buscar animaciones</label>
+            <input class="gallery-search" id="gallery-search" type="search" placeholder="Buscar por nombre o efecto">
+            <button class="gallery-action gallery-action-primary" id="replay-all" type="button">↻ Reproducir todas</button>
+            <button class="gallery-action" id="pause-all" type="button" aria-pressed="false">Ⅱ Pausar</button>
+          </div>
+          <p class="gallery-empty" id="gallery-empty" hidden>No hay animaciones que coincidan con la busqueda.</p>
 
           <div class="card-grid">
             <article class="demo-card">
               <div class="demo-stage"><div class="bg-stage anim-bg-gradient" aria-hidden="true"></div></div>
               <div class="demo-info"><div><h3>Fondo degradado</h3><code>.anim-bg-gradient</code></div><button class="copy-button" type="button" data-label="anim-bg-gradient" data-copy="&lt;div class=&quot;anim-bg-gradient anim-rounded&quot;&gt;&lt;/div&gt;">Copiar ejemplo</button></div>
+            </article>
+            <article class="demo-card">
+              <div class="demo-stage"><div class="bg-stage anim-bg-grid" aria-hidden="true"></div></div>
+              <div class="demo-info"><div><h3>Cuadricula en movimiento</h3><code>.anim-bg-grid</code></div><button class="copy-button" type="button" data-label="anim-bg-grid" data-copy="&lt;section class=&quot;anim-bg-grid anim-rounded&quot;&gt;Tu contenido&lt;/section&gt;">Copiar ejemplo</button></div>
             </article>
             <article class="demo-card">
               <div class="demo-stage"><div class="orbit-stage anim-bg-orbit"><span class="orbit-caption anim-reveal">Fondo con formas</span></div></div>
@@ -266,6 +764,14 @@
               <div class="demo-info"><div><h3>Forma organica</h3><code>.anim-morph</code></div><button class="copy-button" type="button" data-label="anim-morph" data-copy="&lt;div class=&quot;anim-morph&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;">Copiar ejemplo</button></div>
             </article>
             <article class="demo-card">
+              <div class="demo-stage"><div class="flip-tile anim-flip-in">Flip in</div></div>
+              <div class="demo-info"><div><h3>Entrada con giro</h3><code>.anim-flip-in</code></div><button class="copy-button" type="button" data-label="anim-flip-in" data-copy="&lt;div class=&quot;anim-flip-in&quot;&gt;Contenido&lt;/div&gt;">Copiar ejemplo</button></div>
+            </article>
+            <article class="demo-card">
+              <div class="demo-stage"><div class="motion-row"><span class="motion-token anim-jelly">●</span><span class="motion-token anim-heartbeat">♥</span><span class="gradient-word anim-gradient-text">Color</span></div></div>
+              <div class="demo-info"><div><h3>Elasticidad y color</h3><code>.anim-jelly · .anim-heartbeat · .anim-gradient-text</code></div><button class="copy-button" type="button" data-label="anim-jelly y anim-heartbeat" data-copy="&lt;span class=&quot;anim-jelly&quot;&gt;●&lt;/span&gt; &lt;span class=&quot;anim-heartbeat&quot;&gt;♥&lt;/span&gt; &lt;span class=&quot;anim-gradient-text&quot;&gt;Color&lt;/span&gt;">Copiar ejemplo</button></div>
+            </article>
+            <article class="demo-card">
               <div class="demo-stage"><div class="motion-row"><span class="motion-token anim-bounce">↓</span><span class="motion-token anim-pulse">●</span><span class="motion-token anim-wiggle">✦</span></div></div>
               <div class="demo-info"><div><h3>Movimientos suaves</h3><code>.anim-bounce · .anim-pulse · .anim-wiggle</code></div><button class="copy-button" type="button" data-label="anim-bounce, anim-pulse y anim-wiggle" data-copy="&lt;span class=&quot;anim-bounce&quot;&gt;↓&lt;/span&gt; &lt;span class=&quot;anim-pulse&quot;&gt;●&lt;/span&gt; &lt;span class=&quot;anim-wiggle&quot;&gt;✦&lt;/span&gt;">Copiar ejemplo</button></div>
             </article>
@@ -292,6 +798,10 @@
             <article class="demo-card">
               <div class="demo-stage"><div class="anim-loader-bars" role="status" aria-label="Cargando"><span></span><span></span><span></span><span></span></div></div>
               <div class="demo-info"><div><h3>Barras de carga</h3><code>.anim-loader-bars</code></div><button class="copy-button" type="button" data-label="anim-loader-bars" data-copy="&lt;div class=&quot;anim-loader-bars&quot; role=&quot;status&quot; aria-label=&quot;Cargando&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;">Copiar ejemplo</button></div>
+            </article>
+            <article class="demo-card">
+              <div class="demo-stage"><div class="progress-wrap"><div class="anim-loader-progress" role="status" aria-label="Cargando"></div></div></div>
+              <div class="demo-info"><div><h3>Barra de progreso</h3><code>.anim-loader-progress</code></div><button class="copy-button" type="button" data-label="anim-loader-progress" data-copy="&lt;div class=&quot;anim-loader-progress&quot; role=&quot;status&quot; aria-label=&quot;Cargando&quot;&gt;&lt;/div&gt;">Copiar ejemplo</button></div>
             </article>
             <article class="demo-card">
               <div class="demo-stage"><button class="button button-primary anim-button" type="button">Boton interactivo <span aria-hidden="true">→</span></button></div>
@@ -351,6 +861,7 @@
         root.style.setProperty("--anim-duration", `${duration}s`);
         root.style.setProperty("--anim-bg-duration", `${duration * 10}s`);
         root.style.setProperty("--anim-orbit-duration", `${duration * 12}s`);
+        root.style.setProperty("--anim-marquee-duration", `${duration * 15}s`);
         root.style.setProperty("--anim-radius", `${roundness.value}px`);
         document.getElementById("primary-value").textContent = primary.value.toUpperCase();
         document.getElementById("accent-value").textContent = accent.value.toUpperCase();
@@ -364,6 +875,54 @@
         window.clearTimeout(toastTimer);
         toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
       }
+
+      function replayAnimations() {
+        const targets = [...document.querySelectorAll("[class]")].map((element) => ({
+          element,
+          classes: [...element.classList].filter((className) => className.startsWith("anim-"))
+        })).filter(({ classes }) => classes.length > 0);
+
+        targets.forEach(({ element, classes }) => element.classList.remove(...classes));
+        void document.body.offsetWidth;
+        targets.forEach(({ element, classes }) => element.classList.add(...classes));
+        document.body.classList.remove("animations-paused");
+        const pauseButton = document.getElementById("pause-all");
+        pauseButton.setAttribute("aria-pressed", "false");
+        pauseButton.textContent = "Ⅱ Pausar";
+
+        document.querySelectorAll(".lift-demo").forEach((element) => {
+          element.classList.remove("is-preview-active");
+          void element.offsetWidth;
+          element.classList.add("is-preview-active");
+          window.setTimeout(() => element.classList.remove("is-preview-active"), 850);
+        });
+      }
+
+      document.getElementById("replay-all").addEventListener("click", () => {
+        replayAnimations();
+        showToast("Animaciones reiniciadas");
+      });
+
+      document.getElementById("pause-all").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        const paused = document.body.classList.toggle("animations-paused");
+        button.setAttribute("aria-pressed", String(paused));
+        button.textContent = paused ? "▶ Reanudar" : "Ⅱ Pausar";
+      });
+
+      const search = document.getElementById("gallery-search");
+      const cards = [...document.querySelectorAll(".demo-card")];
+      const emptyState = document.getElementById("gallery-empty");
+      search.addEventListener("input", () => {
+        const query = search.value.trim().toLocaleLowerCase("es");
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const matches = card.textContent.toLocaleLowerCase("es").includes(query);
+          card.hidden = !matches;
+          visibleCount += Number(matches);
+        });
+        emptyState.hidden = visibleCount > 0;
+      });
 
       [primary, accent, speed, roundness].forEach((control) => {
         control.addEventListener("input", applySettings);
@@ -381,10 +940,23 @@
       document.querySelectorAll("[data-copy]").forEach((button) => {
         button.addEventListener("click", async () => {
           try {
-            await navigator.clipboard.writeText(button.dataset.copy);
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(button.dataset.copy);
+            } else {
+              const fallback = document.createElement("textarea");
+              fallback.value = button.dataset.copy;
+              fallback.setAttribute("readonly", "");
+              fallback.style.position = "fixed";
+              fallback.style.opacity = "0";
+              document.body.append(fallback);
+              fallback.select();
+              const copied = document.execCommand("copy");
+              fallback.remove();
+              if (!copied) throw new Error("Clipboard API unavailable");
+            }
             showToast(`Ejemplo de ${button.dataset.label} copiado`);
-          } catch (error) {
-            showToast("No se pudo copiar. Selecciona la clase mostrada.");
+          } catch {
+            showToast("No se pudo copiar automaticamente; selecciona el ejemplo manualmente.");
           }
         });
       });
