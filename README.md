@@ -27,7 +27,7 @@ import "animaciones-web-soyromahhh";
 ## Ejemplos
 
 ```html
-<div class="anim-bg-gradient anim-padding">
+<div class="anim-bg-gradient">
   <h1 class="anim-fade-in">Hola, web</h1>
   <button class="anim-hover-lift">Ver mas</button>
 </div>
