@@ -1,8 +1,8 @@
 # Animaciones Web
 
-Coleccion ligera de animaciones CSS reutilizables para paginas y aplicaciones web. Incluye fondos, entradas, efectos para botones, loaders y placeholders. Sin dependencias ni JavaScript.
+Coleccion de animaciones CSS reutilizables para fondos, loaders y detalles de interfaz. No requiere dependencias ni JavaScript para usar la libreria.
 
-La pagina de ejemplo usa **Arial**, texto legible y un diseno sencillo. Las clases de la libreria no cambian la tipografia global de tu sitio. Abre [`index.html`](index.html) para ver la muestra.
+La demo interactiva esta en [`index.html`](index.html): cambia los colores, el ritmo y las esquinas; prueba los efectos y copia sus clases. Usa Arial y respeta la preferencia del sistema para reducir el movimiento.
 
 ## Instalacion
 
@@ -12,71 +12,90 @@ Cuando se publique en npm:
 npm install animaciones-web-soyromahhh
 ```
 
-Importa la hoja de estilos desde tu punto de entrada:
+Importa la hoja de estilos:
 
 ```css
 @import "animaciones-web-soyromahhh";
 ```
 
-O desde JavaScript en un proyecto con soporte para CSS:
+O en un proyecto con soporte para importar CSS:
 
 ```js
 import "animaciones-web-soyromahhh";
 ```
 
-## Ejemplos
+## Uso rapido
 
 ```html
-<div class="anim-bg-gradient">
+<div class="anim-bg-gradient anim-rounded">
   <h1 class="anim-fade-in">Hola, web</h1>
-  <button class="anim-hover-lift">Ver mas</button>
 </div>
 
-<div class="anim-loader-spinner" role="status" aria-label="Cargando"></div>
-
-<div class="anim-loader-dots" role="status" aria-label="Cargando">
-  <span></span><span></span><span></span>
-</div>
-
-<div class="anim-skeleton" aria-hidden="true"></div>
+<div class="anim-loader-orbit" role="status" aria-label="Cargando"></div>
 ```
 
-## Clases disponibles
+## Personalizacion
 
-| Clase | Uso |
-| --- | --- |
-| `anim-bg-gradient` | Fondo degradado animado |
-| `anim-bg-orbit` | Fondo con formas suaves en movimiento |
-| `anim-fade-in` | Aparicion gradual |
-| `anim-slide-up` | Entrada desde abajo |
-| `anim-slide-in-left` | Entrada desde la izquierda |
-| `anim-bounce` | Rebote suave y continuo |
-| `anim-pulse` | Pulso de opacidad |
-| `anim-spin` | Giro continuo |
-| `anim-loader-spinner` | Indicador circular de carga |
-| `anim-loader-dots` | Indicador de tres puntos (requiere tres `span`) |
-| `anim-loader-bars` | Indicador de barras (requiere cuatro `span`) |
-| `anim-skeleton` | Placeholder de carga |
-| `anim-hover-lift` | Elevacion al pasar el puntero o enfocar |
-| `anim-marquee` | Desplazamiento horizontal (requiere contenido duplicado) |
-
-## Opciones
-
-Las animaciones respetan la preferencia del sistema `prefers-reduced-motion`. Puedes ajustar el ritmo con variables CSS en el elemento:
+Define las variables una vez en `:root` o en un contenedor para personalizar solo esa parte:
 
 ```css
-.mi-loader {
+:root {
+  --anim-color: #5b5de6;
+  --anim-accent: #ff8866;
+  --anim-surface: #e8eaf3;
   --anim-duration: 1.2s;
-  --anim-color: #3157c8;
+  --anim-bg-duration: 12s;
+  --anim-orbit-duration: 14.4s;
+  --anim-radius: 18px;
 }
 ```
 
-La duracion predeterminada es `1s` y el color predeterminado es azul. Usa las clases en elementos HTML normales; para loaders, agrega un nombre accesible como `role="status"` y `aria-label="Cargando"`.
+Variables disponibles:
+
+| Variable | Controla | Valor inicial |
+| --- | --- | --- |
+| `--anim-color` | Color principal | `#5b5de6` |
+| `--anim-accent` | Color secundario | `#ff8866` |
+| `--anim-surface` | Borde del loader circular | `#e8eaf3` |
+| `--anim-duration` | Ritmo de loaders y movimientos | `1.2s` |
+| `--anim-bg-duration` | Ritmo del fondo degradado | `12s` |
+| `--anim-orbit-duration` | Ritmo de fondos orbitales y formas | `14.4s` |
+| `--anim-radius` | Esquinas de fondos y de `.anim-rounded` | `18px` |
+
+## Clases disponibles
+
+| Clase | Efecto |
+| --- | --- |
+| `anim-bg-gradient` | Fondo degradado animado |
+| `anim-bg-orbit` | Fondo con formas en movimiento |
+| `anim-rounded` | Esquinas personalizables |
+| `anim-fade-in` | Aparicion gradual |
+| `anim-slide-up` | Entrada desde abajo |
+| `anim-slide-in-left` | Entrada desde la izquierda |
+| `anim-reveal` | Entrada con escala y desenfoque |
+| `anim-bounce` | Rebote |
+| `anim-float` | Flotacion suave |
+| `anim-pulse` | Pulso de opacidad y escala |
+| `anim-wiggle` | Balanceo |
+| `anim-glow` | Brillo pulsante |
+| `anim-morph` | Forma organica cambiante |
+| `anim-spin` | Giro continuo |
+| `anim-loader-spinner` | Loader circular |
+| `anim-loader-orbit` | Loader orbital |
+| `anim-loader-dots` | Tres puntos (requiere tres `span`) |
+| `anim-loader-bars` | Barras (requiere cuatro `span`) |
+| `anim-skeleton` | Placeholder de carga |
+| `anim-hover-lift` | Elevacion al pasar el puntero o enfocar |
+| `anim-button` | Destello para botones |
+| `anim-stagger` | Entrada escalonada de hijos |
+| `anim-marquee` | Desplazamiento horizontal (duplica el contenido) |
+
+Los loaders deben tener un nombre accesible, por ejemplo `role="status"` y `aria-label="Cargando"`. Todas las animaciones respetan `prefers-reduced-motion`.
 
 ## Publicar en npm
 
 1. Comprueba que el nombre `animaciones-web-soyromahhh` este disponible en npm.
-2. Ejecuta `npm login` y luego `npm publish` desde la carpeta del proyecto.
+2. Ejecuta `npm login` y `npm publish` desde la carpeta del proyecto.
 
 Si el nombre ya esta ocupado, cambia el campo `name` de `package.json` antes de publicar.
 
