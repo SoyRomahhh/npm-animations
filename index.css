@@ -1,0 +1,241 @@
+:root {
+  --anim-duration: 1s;
+  --anim-color: #3157c8;
+  --anim-surface: #e7eaf0;
+  --anim-ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.anim-bg-gradient {
+  background: linear-gradient(120deg, #3157c8, #7657c8, #2d8ca8, #3157c8);
+  background-size: 300% 300%;
+  animation: anim-gradient 12s ease infinite;
+}
+
+.anim-bg-orbit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #f3f5fa;
+}
+
+.anim-bg-orbit::before,
+.anim-bg-orbit::after {
+  position: absolute;
+  z-index: -1;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  content: "";
+  filter: blur(2px);
+  opacity: 0.65;
+}
+
+.anim-bg-orbit::before {
+  top: -6rem;
+  left: -4rem;
+  background: #bac9ff;
+  animation: anim-orbit-a 14s ease-in-out infinite alternate;
+}
+
+.anim-bg-orbit::after {
+  right: -5rem;
+  bottom: -7rem;
+  background: #c9e8ef;
+  animation: anim-orbit-b 16s ease-in-out infinite alternate;
+}
+
+.anim-fade-in {
+  animation: anim-fade-in var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-slide-up {
+  animation: anim-slide-up var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-slide-in-left {
+  animation: anim-slide-in-left var(--anim-duration) var(--anim-ease) both;
+}
+
+.anim-bounce {
+  animation: anim-bounce 1.8s ease-in-out infinite;
+}
+
+.anim-pulse {
+  animation: anim-pulse 1.6s ease-in-out infinite;
+}
+
+.anim-spin {
+  animation: anim-spin 0.8s linear infinite;
+}
+
+.anim-loader-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--anim-surface);
+  border-top-color: var(--anim-color);
+  border-radius: 50%;
+  animation: anim-spin 0.8s linear infinite;
+}
+
+.anim-loader-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.anim-loader-dots span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--anim-color);
+  animation: anim-dot 1.2s ease-in-out infinite;
+}
+
+.anim-loader-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.anim-loader-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.anim-loader-bars {
+  display: inline-flex;
+  height: 2rem;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.anim-loader-bars span {
+  width: 0.3rem;
+  height: 35%;
+  border-radius: 999px;
+  background: var(--anim-color);
+  animation: anim-bar 1s ease-in-out infinite;
+}
+
+.anim-loader-bars span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.anim-loader-bars span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.anim-loader-bars span:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.anim-skeleton {
+  min-height: 1rem;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  background: linear-gradient(90deg, #e7eaf0 25%, #f5f6f8 50%, #e7eaf0 75%);
+  background-size: 200% 100%;
+  animation: anim-shimmer 1.5s ease-in-out infinite;
+}
+
+.anim-hover-lift {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.anim-hover-lift:hover,
+.anim-hover-lift:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgb(22 34 61 / 14%);
+}
+
+.anim-marquee {
+  display: block;
+  width: max-content;
+  animation: anim-marquee 18s linear infinite;
+}
+
+.anim-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes anim-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes anim-orbit-a {
+  to { transform: translate(4rem, 3rem) scale(1.15); }
+}
+
+@keyframes anim-orbit-b {
+  to { transform: translate(-3rem, -2rem) scale(0.9); }
+}
+
+@keyframes anim-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes anim-slide-up {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes anim-slide-in-left {
+  from { opacity: 0; transform: translateX(-1rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes anim-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.45rem); }
+}
+
+@keyframes anim-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes anim-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes anim-dot {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-0.4rem); }
+}
+
+@keyframes anim-bar {
+  0%, 100% { height: 35%; }
+  50% { height: 100%; }
+}
+
+@keyframes anim-shimmer {
+  to { background-position: -200% 0; }
+}
+
+@keyframes anim-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-bg-gradient,
+  .anim-bg-orbit::before,
+  .anim-bg-orbit::after,
+  .anim-fade-in,
+  .anim-slide-up,
+  .anim-slide-in-left,
+  .anim-bounce,
+  .anim-pulse,
+  .anim-spin,
+  .anim-loader-spinner,
+  .anim-loader-dots span,
+  .anim-loader-bars span,
+  .anim-skeleton,
+  .anim-marquee {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .anim-hover-lift {
+    transition-duration: 0.01ms;
+  }
+}

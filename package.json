@@ -1,0 +1,29 @@
+{
+  "name": "animaciones-web-soyromahhh",
+  "version": "1.0.0",
+  "description": "Animaciones CSS reutilizables para fondos, loaders e interfaces web.",
+  "license": "MIT",
+  "style": "./index.css",
+  "exports": {
+    ".": {
+      "style": "./index.css",
+      "default": "./index.css"
+    },
+    "./style.css": "./index.css"
+  },
+  "files": [
+    "index.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "css",
+    "animations",
+    "animaciones",
+    "loaders",
+    "ui"
+  ],
+  "sideEffects": [
+    "*.css"
+  ]
+}
